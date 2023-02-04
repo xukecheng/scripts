@@ -4,6 +4,8 @@
 # 自动创建 Docker TLS 证书
 # -------------------------------------------------------------
 
+IP=`curl ip.sb -4`
+
 # Read the user input   
 
 echo "Enter your password: "  
@@ -34,7 +36,8 @@ state: $state
 city: $city
 organization: $organization
 organizational_unit: $organizational_unit
-email: $email"
+email: $email
+IP: $IP"
 echo
 read -p "Press any key to continue!"
 
@@ -52,7 +55,7 @@ EMAIL=$email
 # --[END]--
 
 CODE="docker_api"
-IP=`curl ip.sb -4`
+
 COMMON_NAME="$IP"
 
 # Generate CA key
@@ -94,5 +97,5 @@ cd ..
 rm -rf "tls-client-certs-$CODE"
 
 # 拷贝服务端证书
-# mkdir -p /srv/certs.d
-# cp "ca-$CODE.pem" "server-cert-$CODE.pem" "server-key-$CODE.pem" /srv/certs.d/
+mkdir -p /srv/certs.d
+cp "ca-$CODE.pem" "server-cert-$CODE.pem" "server-key-$CODE.pem" /srv/certs.d/
