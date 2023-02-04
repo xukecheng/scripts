@@ -98,4 +98,4 @@ rm -rf "tls-client-certs-$CODE"
 
 # 拷贝服务端证书
 mkdir -p /srv/certs.d
-cp "ca-$CODE.pem" "server-cert-$CODE.pem" "server-key-$CODE.pem" /srv/certs.d/
+cp "ca-$CODE.pem" "server-cert-$CODE.pem" "server-key-$CODE.pem" "tls-client-certs-$CODE.tar.gz" /srv/certs.d/
