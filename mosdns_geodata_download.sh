@@ -29,8 +29,13 @@ v2dat_dump() {
     rm -rf "$v2dat_dir/v2dat"
 }
 
+update_local_ptr() {
+    curl --connect-timeout 5 -m 60 -kfSL -o "$v2dat_dir/rules/local-ptr.txt" "https://raw.githubusercontent.com/sbwml/luci-app-mosdns/v5/luci-app-mosdns/root/etc/mosdns/rule/local-ptr.txt"
+}
+
 geodat_update
 v2dat_dump
+update_local_ptr
 
 touch /etc/mosdns/force-nocn.txt
 touch /etc/mosdns/force-cn.txt
